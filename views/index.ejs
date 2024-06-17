@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Chat GPT Page</title>
+    <link href="../public/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="grid-container-1">
+        <div class="grid-container-3 grid-item">
+            <div class="grid-item">
+                <div class="sidebar-item">
+                    <form id="new-chat" class = "special-sidebar-form" action="/newfile", method="post">
+                        <input type="hidden" name="data" value="NewChat.json">
+                        <input type="submit" hidden="true">
+                        <span>New chat </span>
+                    </form>
+                </div>            
+            </div>
+            <div class="grid-item scrollable">
+                <% for(var j =0; j< data.length; j++) { %>
+                    <div class="sidebar-item">
+                        <form id = "<%= data[j]%>" class = "sidebar-form" action="/convo/<%= data[j] %>", method="POST">
+                            <input type="hidden" name="data" value="<%= data[j] %>">
+                            <span><%= data[j].slice(0,-5) %> </span>                 
+                        </form>
+                        <button id = "edit-icon-<%=data[j]%>" class="edit-icon fa-regular fa-pen-to-square"></button>
+                        <button id = "delete-icon-<%=data[j]%>" class="delete-icon fa-solid fa-trash"></button>
+
+                        <!-- <button id = "edit-icon-<%=data[j]%>"class="edit-icon ">Edit Name</button> -->
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="grid-item grid-container-2">
+            <div class="conversation-container scrollable grid-item">
+                <!-- <p class="text-bubble sent"> Here is a test message</p>
+                <p class="text-bubble recieved">This is a test reply message</p> -->
+                <% for(var i =0; i< content.length; i+=2) { %>
+                        <p class="text-bubble sent"><%= content[i]['content'] %></p>
+                        <p class="text-bubble recieved"> <%= content[i+1]['content'] %> </p>
+                    <% } %>
+            </div> 
+            <div class="search-wrapper grid-item">
+                <form class="search-box-form" action="/prompt" method="POST">
+                <input type="text" name="focus" required class="search-box" placeholder="Enter query" />
+                    <button class="close-icon" type="reset"></button>
+                <input type="submit" hidden="true">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    var forms = document.getElementsByClassName('sidebar-form');
+    for(var i = 0; i<forms.length; i++){
+        var form = document.getElementById(forms[i].id)
+        form.addEventListener("click", function(){
+            document.getElementById(this.id).submit();
+        })
+    }
+    document.getElementById('new-chat').addEventListener("click", function(){
+        this.submit()
+    })
+    var editButtons = document.getElementsByClassName('edit-icon');
+    for(var i = 0; i< editButtons.length; i++){
+        var editButton = document.getElementById(editButtons[i].id)
+        editButton.addEventListener("click", function(){
+            let id_to_find = this.id.slice(10)
+            var corr_form = document.getElementById(id_to_find) 
+            var newName = window.prompt('Enter New Name here')
+            document.getElementById(id_to_find).action = `/rename/${newName}` //if test.json clicked, go to endpoint test.json
+            document.getElementById(id_to_find).submit()
+        })
+    }
+    var deleteButtons = document.getElementsByClassName('delete-icon');
+    for(var i = 0; i < deleteButtons.length; i++){
+        var deleteButton = document.getElementById(deleteButtons[i].id)
+        deleteButton.addEventListener("click", function(){
+            let id_to_find = this.id.slice(12)
+            var corr_form = document.getElementById(id_to_find) 
+            document.getElementById(id_to_find).action = `/delete/${id_to_find}` //if test.json clicked, go to endpoint test.json
+            document.getElementById(id_to_find).submit()
+        })
+    }
+
+
+</script>

@@ -1,0 +1,145 @@
+
+
+.grid-container-1{
+    display: grid;
+    grid-template-columns: 17.5vw 80vw;
+    height: 100vh;
+}
+
+.grid-container-2{
+    display: grid;
+    /* height: 100%; */
+	grid-template-rows: 90vh 10vh;	
+}
+
+.grid-container-3{
+	display: grid;
+	grid-template-rows: 10vh 90vh;
+}
+
+.grid-item {
+    position: relative;
+    border: 1px solid;
+    text-align: center;
+	height: 100%;
+  }
+
+
+.sidebar-item{
+	position: relative;
+	/* border: solid 1px; */
+	padding: 3%;
+	margin: 7%;
+	outline: 0;
+	border-radius: 10px;
+	text-align: left;
+}
+
+.sidebar-item:hover{
+	background-color: lightslategray;
+}
+
+.sidebar-form{
+	display:inline-block
+}
+
+.scrollable{
+	overflow-y: scroll
+}
+
+
+.search-box, .close-icon{
+	position: relative;
+	padding: 1%;
+	/* padding: 10px; */
+}
+.search-wrapper {
+	width: 100%;
+}
+
+.search-box {
+	display: block;
+	margin-top: 1%;
+	margin-left: auto;
+    margin-right: auto;
+	width: 80%;
+	border: 1px solid #ccc;
+	outline: 0;
+	border-radius: 15px;
+}
+.search-box:focus {
+	box-shadow: 0 0 15px 5px #b0e0ee;
+	border: 2px solid #bebede;
+}
+
+.edit-icon{
+	border:1px solid transparent;
+	outline: 0;
+	cursor: pointer;
+	float: right;
+	vertical-align: center;
+}
+
+.delete-icon{
+	border:1px solid transparent;
+	outline: 0;
+	cursor: pointer;
+	float: right;
+	vertical-align: center;
+}
+
+.close-icon {
+	border:1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: right;
+	outline: 0;
+	cursor: pointer;
+}
+.close-icon:after {
+	content: "X";
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	background-color: #FA9595;
+	z-index:1;
+	right: 35px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	padding: 2px;
+	border-radius: 50%;
+	text-align: center;
+	color: white;
+	font-weight: normal;
+	font-size: 12px;
+	box-shadow: 0 0 2px #E50F0F;
+	cursor: pointer;
+}
+.search-box:not(:valid) ~ .close-icon {
+	display: none;
+}
+
+
+.text-bubble{
+	width:50%;
+	padding:10px 20px;
+	margin:10px;
+	border-radius:15px;
+	text-align: left;
+
+  }
+.recieved{
+	background-color: #1abc9c;
+	color:white;
+	clear:both;
+	width: 90%;
+}
+.sent{
+	background-color:#EEEEEE;
+	color:black;
+	float:right;
+	clear:both;
+	width: 60%;
+}
