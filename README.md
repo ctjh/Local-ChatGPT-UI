@@ -18,4 +18,4 @@
     </ul>
 </p>
 
-<img src="https://github.com/ctjh/Local-ChatGPT-UI/blob/homepage.png">
+<img src="https://raw.githubusercontent.com/ctjh/Local-ChatGPT-UI/main/homepage.png">
